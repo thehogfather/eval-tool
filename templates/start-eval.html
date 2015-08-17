@@ -1,0 +1,31 @@
+<div>
+    <div>
+        <h5>{{heuristic.name}}</h5>
+        <p>{{heuristic.description}}</p>
+        
+        <h5>{{device.name}}/{{device.manufacturer}}</h5>
+    </div>
+    <div>
+        <h5>The Evaluation</h5>
+        <label>Frequency</label>
+        <md-radio-group ng-model="currentEval.frequency">
+            <md-radio-button value="Low">Low</md-radio-button>
+            <md-radio-button value="Medium">Medium</md-radio-button>
+            <md-radio-button value="High">High</md-radio-button>
+        </md-radio-group>
+        
+        <label>Impact</label>
+        <md-radio-group ng-model="currentEval.Impact">
+            <md-radio-button value="Low">Low</md-radio-button>
+            <md-radio-button value="Medium">Medium</md-radio-button>
+            <md-radio-button value="High">High</md-radio-button>
+        </md-radio-group>
+        
+        <label>Comments</label>
+        <textarea ng-model="currentEval.comments">
+        
+        </textarea>
+    </div>
+    <md-button ng-click="previous()">Previous</md-button>
+    <md-button ng-click="next()">Next</md-button>
+</div>

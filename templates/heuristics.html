@@ -1,0 +1,12 @@
+<md-list ng-controller="HeuristicsListCtrl">
+    <md-subheader>Heuristics to evaluate</md-subheader>
+    <md-list-item ng-repeat="h in heuristics">
+        <p>{{h.name}}</p>
+        <md-content>{{h.description}}</md-content>
+    </md-list-item>
+    <a href="#/addheuristic">Add Heuristic</a>
+    
+    <a href="#/devices">View Devices</a>
+    
+    <a href="#/start">Start Evaluation</a>
+</div>

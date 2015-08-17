@@ -1,0 +1,7 @@
+{
+  "heuristics": [
+      {"name": "Visibility", "description": "Visibility Desc"},
+      {"name": "Feedback", "description": "Feedback"},
+      {"name": "Consistency", "description": "Consistency desc"}
+  ]   
+}
