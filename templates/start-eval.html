@@ -1,31 +1,49 @@
 <div>
-    <div>
-        <h5>{{heuristic.name}}</h5>
-        <p>{{heuristic.description}}</p>
-        
-        <h5>{{device.name}}/{{device.manufacturer}}</h5>
-    </div>
-    <div>
-        <h5>The Evaluation</h5>
-        <label>Frequency</label>
-        <md-radio-group ng-model="currentEval.frequency">
-            <md-radio-button value="Low">Low</md-radio-button>
-            <md-radio-button value="Medium">Medium</md-radio-button>
-            <md-radio-button value="High">High</md-radio-button>
-        </md-radio-group>
-        
-        <label>Impact</label>
-        <md-radio-group ng-model="currentEval.Impact">
-            <md-radio-button value="Low">Low</md-radio-button>
-            <md-radio-button value="Medium">Medium</md-radio-button>
-            <md-radio-button value="High">High</md-radio-button>
-        </md-radio-group>
-        
-        <label>Comments</label>
-        <textarea ng-model="currentEval.comments">
-        
-        </textarea>
-    </div>
-    <md-button ng-click="previous()">Previous</md-button>
-    <md-button ng-click="next()">Next</md-button>
+    <md-content>
+        <md-card>
+            <md-card-content>
+                <h5>{{heuristic.name}}</h5>
+                <p>{{heuristic.description}}</p>
+                <h5>{{device.name}}/{{device.manufacturer}}</h5>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <h5>The Evaluation</h5>
+            <div layout="row">
+                <md-card-content flex=50>
+                    <md-input-container>
+                        <label>Frequency</label>
+                        <md-radio-group ng-model="currentEval.frequency">
+                            <md-radio-button value="Low">Low</md-radio-button>
+                            <md-radio-button value="Medium">Medium</md-radio-button>
+                            <md-radio-button value="High">High</md-radio-button>
+                        </md-radio-group>
+                    </md-input-container>
+                </md-card-content>
+                
+                <md-card-content flex=50>
+                    <md-input-container>
+                        <label>Impact</label>
+                        <md-radio-group ng-model="currentEval.Impact">
+                            <md-radio-button value="Low">Low</md-radio-button>
+                            <md-radio-button value="Medium">Medium</md-radio-button>
+                            <md-radio-button value="High">High</md-radio-button>
+                        </md-radio-group>
+                    </md-input-container>
+                </md-card-content>
+            </div>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <md-input-container>
+                    <label>Comments</label>
+                    <textarea ng-model="currentEval.comments">
+
+                    </textarea>
+                </md-input-container>
+            </md-card-content>
+        </md-card>
+        <md-button ng-click="previous()">Previous</md-button>
+        <md-button ng-click="next()">Next</md-button>
+    </md-content>
 </div>

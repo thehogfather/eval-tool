@@ -1,0 +1,47 @@
+<div>
+    <md-content class="md-padding">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Heuristics">
+                <md-content class="md-padding">
+                    <h5>Heuristics to Evaluate</h5>
+                    <md-list>
+                        <div class="md-list-item" ng-repeat="h in heuristics">
+                            <md-list-item-text>
+                            
+                            </md-list-item-text>
+                            <h6>{{h.name}}</h6>
+                            <p>{{h.description}}</p>
+                        </div>
+                    </md-list>
+                    
+                    
+                    <md-button class="md-raised" href="#/addheuristic">Add Heuristic</md-button>
+                </md-content>
+            </md-tab>
+            <md-tab label="Devices">
+                <md-content class="md-padding">
+                    <h5>Devices to Evaluate</h5>
+                    <md-list>
+                        <md-list-item ng-repeat="d in devices">
+                            <p>{{d.name}}</p>
+                            <p>{{d.manufacturer}}</p>
+                            <p>{{d.model}}</p>
+                            <p>{{d.softwareVersion}}</p>
+                        </md-list-item>
+                    </md-list>
+                    <md-button class="md-raised" href="#/adddevice">Add Device</md-button>
+                </md-content>
+            </md-tab>
+            
+            <md-tab label="Evaluation Matrix">
+                <md-content class="md-padding">
+                    <h5>The risk matrix</h5>
+                    
+                    
+                    <md-button class="md-raised" href="#/start">Modify Evaluation</md-button>
+                </md-content>
+            </md-tab>
+            
+        </md-tabs>
+    </md-content>
+</div>

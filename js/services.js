@@ -17,15 +17,17 @@ function get(key) {
 app.service("Heuristics", ["$http", function ($http) {
     "use strict";
     var heuristics = get("heuristics") || [];
-    
-    $http.get("data/heuristics.json").then(function (res) {
-        console.log(res);
-        res.data.heuristics.forEach(function (d) {
-            heuristics.push(d);
+    if (heuristics.length === 0) {
+        $http.get("data/heuristics.json").then(function (res) {
+            console.log(res);
+            res.data.heuristics.forEach(function (d) {
+                heuristics.push(d);
+            });
+        }, function (err) {
+            console.log(err);
         });
-    }, function (err) {
-        console.log(err);
-    });
+    }
+   
     
     return {
         getHeuristics: function () {

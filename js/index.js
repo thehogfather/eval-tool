@@ -7,24 +7,23 @@
         $scope.name = "Evaluation Application";
     }]);
     
-    app.controller("HeuristicsListCtrl", ["$scope", "$http", "Heuristics", function ($scope, $http, Heuristics) {
+    app.controller("MainCtrl", ["$scope", "$http", "Heuristics", "Devices", "EvaluationData", function ($scope, $http, Heuristics, Devices, EvaluationData) {
         $scope.heuristics = Heuristics.getHeuristics();
+        $scope.devices = Devices.getDevices();
+        $scope.evalData =EvaluationData.getData();
+        
     }]);
     
     app.controller("AddHeuristicCtrl", ["$scope", "Heuristics", "$location", function ($scope, Heuristics, $location) {
         $scope.heuristic = {};
         $scope.save = function () {
             Heuristics.addHeuristic($scope.heuristic);
-            $location.path("#/heuristics");
+            $location.path("#/main");
         };
         
         $scope.cancel = function () {
-            $location.path("#/heuristics");
+            $location.path("#/main");
         };
-    }]);
-    
-    app.controller("DevicesListCtrl", ["$scope", "Devices", function ($scope, Devices) {
-        $scope.devices = Devices.getDevices();
     }]);
     
     app.controller("AddDeviceCtrl", ["$scope", "Devices", "$location", function ($scope, Devices, $location) {
@@ -32,11 +31,11 @@
         
         $scope.save = function () {
             Devices.addDevice($scope.device);
-            $location.path("#/devices");
+            $location.path("#/main");
         };
         
         $scope.cancel = function () {
-            $location.path("#/devices");
+            $location.path("#/main");
         };
     }]);
     
@@ -95,17 +94,13 @@
     }]);
     
     app.config(["$routeProvider", function ($routeProvider) {
-        $routeProvider.when("/heuristics", {
-            templateUrl: "templates/heuristics.html",
-            controller: "HeuristicsListCtrl"
+        $routeProvider.when("/main", {
+            templateUrl: "templates/main.html",
+            controller: "MainCtrl"
         })
         .when("/addheuristic", {
             templateUrl: "templates/add-heuristic.html",
             controller: "AddHeuristicCtrl"
-        })
-        .when("/devices", {
-            templateUrl: "templates/devices.html",
-            controller: "DevicesListCtrl"
         })
         .when("/adddevice", {
             templateUrl: "templates/add-device.html",
@@ -115,6 +110,6 @@
             templateUrl: "templates/start-eval.html",
             controller: "StartEvalCtrl"
         })
-        .otherwise({redirectTo: "/heuristics"});
+        .otherwise({redirectTo: "/main"});
     }]);
 }());

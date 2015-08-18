@@ -1,15 +1,23 @@
 <div>
-    <label>Device</label>
-    <input type="text" ng-model="device.name"/>
-    <label>Manufacturer</label>
-    <input type="text" ng-model="device.manufacturer"/>
-    
-    <label>Model</label>
-    <input type="text" ng-model="device.model"/>
-    
-    <label>Software Version</label>
-    <input type="text" ng-model="device.softwareVersion"/>
-    
-    <md-button ng-click="save()">Save</md-button>
-    <md-button ng-click="cancel()">Cancel</md-button>
+    <md-content>
+        <md-toolbar><div class="md-toolbar-tools">Add Device</div></md-toolbar>
+        <md-input-container>
+            <label>Device</label>
+            <input type="text" ng-model="device.name"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Manufacturer</label>
+            <input type="text" ng-model="device.manufacturer"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Model</label>
+            <input type="text" ng-model="device.model"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Software Version</label>
+            <input type="text" ng-model="device.softwareVersion"/>
+        </md-input-container>
+    </md-content>
+    <md-button class="md-raised" ng-click="save()">Save</md-button>
+    <md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
 </div>
