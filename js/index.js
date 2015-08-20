@@ -7,11 +7,21 @@
         $scope.name = "Evaluation Application";
     }]);
     
-    app.controller("MainCtrl", ["$scope", "$http", "Heuristics", "Devices", "EvaluationData", function ($scope, $http, Heuristics, Devices, EvaluationData) {
+    app.controller("MainCtrl", ["$scope", "$http", "Heuristics", "Devices", "EvaluationData", "SelectedTab", function ($scope, $http, Heuristics, Devices, EvaluationData, SelectedTab) {
         $scope.heuristics = Heuristics.getHeuristics();
         $scope.devices = Devices.getDevices();
-        $scope.evalData =EvaluationData.getData();
+        $scope.evalData = EvaluationData.getData();
+        $scope.selectedTabIndex = SelectedTab.getSelectedTab();
         
+        $scope.$watch("selectedTabIndex", function (current, old) {
+            SelectedTab.setSelectedTab(current);
+        });
+        
+        $scope.selectCell = function (hindex, dindex) {
+            $scope.evalData.currentDeviceIndex = +dindex;
+            $scope.evalData.currentHeuristicIndex = +hindex;
+            $scope.currentEval = $scope.evalData[hindex][dindex];
+        };
     }]);
     
     app.controller("AddHeuristicCtrl", ["$scope", "Heuristics", "$location", function ($scope, Heuristics, $location) {
@@ -39,29 +49,41 @@
         };
     }]);
     
-    app.controller("StartEvalCtrl", ["$scope", "Devices", "Heuristics", "EvaluationData", function ($scope, Devices, Heuristics, EvaluationData) {
+    app.controller("StartEvalCtrl", ["$scope", "Devices", "Heuristics", "EvaluationData", "SelectedTab", "$location", function ($scope, Devices, Heuristics, EvaluationData, SelectedTab, $location) {
+        
+        var devices = Devices.getDevices();
+        var heuristics = Heuristics.getHeuristics();
+        var evalData = EvaluationData.getData();
+        var currentDeviceIndex = evalData.currentDeviceIndex || 0;
+        var currentHeuristicIndex = evalData.currentHeuristicIndex || 0;
         
         function updateScope () {
+            evalData[currentHeuristicIndex] = evalData[currentHeuristicIndex] || [];
+            evalData[currentHeuristicIndex][currentDeviceIndex] = 
+            evalData[currentHeuristicIndex][currentDeviceIndex] || {};
+       
             EvaluationData.save();
             $scope.currentEval = evalData[currentHeuristicIndex][currentDeviceIndex];
             $scope.device = devices[currentDeviceIndex];
             $scope.heuristic = heuristics[currentHeuristicIndex];
         }
-        
-        var devices = Devices.getDevices();
-        var heuristics = Heuristics.getHeuristics();
-        
-        var currentDeviceIndex = EvaluationData.currentDeviceIndex || 0;
-        var currentHeuristicIndex = EvaluationData.currentHeuristicIndex || 0;
-        
-        var evalData = EvaluationData.getData();
-        evalData[currentHeuristicIndex] = evalData[currentHeuristicIndex] || [];
-        evalData[currentHeuristicIndex][currentDeviceIndex] = 
-            evalData[currentHeuristicIndex][currentDeviceIndex] || {};
-       
-        
+            
         updateScope();
         
+        $scope.gotoHeuristics = function () {
+            SelectedTab.setSelectedTab(0);
+            $location.path("#/main");
+        };
+        
+        $scope.gotoDevices = function () {
+            SelectedTab.setSelectedTab(1);
+            $location.path("#/main");
+        };
+        
+        $scope.gotoMatrix = function () {
+            SelectedTab.setSelectedTab(2);
+            $location.path("#/main");
+        };
         $scope.next = function () {
             if (currentHeuristicIndex < heuristics.length - 1) {
                 currentHeuristicIndex++;

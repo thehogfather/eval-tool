@@ -27,7 +27,6 @@ app.service("Heuristics", ["$http", function ($http) {
             console.log(err);
         });
     }
-   
     
     return {
         getHeuristics: function () {
@@ -65,6 +64,32 @@ app.service("Devices", function () {
         },
         getDevices: function () {
             return devices;   
+        }
+    };
+});
+
+app.service("SelectedTab", function () {
+    "use strict";
+    var selectedTab = get("selectedTab") || 0;
+    return {
+        getSelectedTab: function () {
+            return selectedTab;   
+        },
+        setSelectedTab: function (t) {
+            selectedTab = t;
+        }
+    };
+});
+
+app.service("SelectedCell", function () {
+    "use strict";
+    var selectedCell = get("selectCell") || {heuristicIndex: 0, deviceIndex: 0};
+    return {
+        getSelectedCell: function () {
+            return selectedCell;
+        },
+        setSelectedCell: function (s) {
+            selectedCell = s;   
         }
     };
 });

@@ -1,0 +1,84 @@
+$cell-size: 40px;
+$heuristic-label-width: 230px;
+$heuristic-label-height: $cell-size;
+$device-label-width: 100px;
+
+$medium-high: #ff9820;
+$good: #3d3;
+$low-low: #baff20;
+$high-high: #ff2020;
+$medium-low: #f6ff20;
+$medium-medium: #ffd420;
+$low-high: #ffd420;
+
+body * {
+    box-sizing: border-box;   
+}
+
+.table-line {
+    border-width: 5px;   
+}
+.device {
+    height: $cell-size;
+    width: $device-label-width;
+    margin-right: 0;
+    line-height: $cell-size;
+    vertical-align: middle;
+}
+
+.cell {
+    border: 1px solid white;
+    width: $cell-size;
+    height: $cell-size;
+    background-color: #eee;
+}
+
+.heuristic-wrap {
+    height: $heuristic-label-width;
+    width: $heuristic-label-height;
+}
+
+.heuristic {
+    width: $heuristic-label-width;;
+    height: $heuristic-label-height;
+    transform-origin: 0% 0%;
+//    transform: rotate(-80deg) translateX(-$heuristic-label-width + 10) translateY(30px);
+    transform: rotate(-90deg) translateX(-$heuristic-label-width);
+    line-height: $cell-size;
+    vertical-align: middle;
+    padding-left: 5px;
+    font-size: max(12px, $cell-size / 3);
+}
+
+.medium_medium{
+    background-color: $medium-medium;
+}
+
+.low_medium, .medium_low{
+    background-color: $medium-low;
+}
+
+.low_low {
+    background-color: $low-low;
+}
+
+.high_high {
+    background-color: $high-high;
+}
+
+.high_low, .low_high {
+    background-color: $low-high;
+}
+
+.high_medium, .medium_high{
+    background-color: $medium-high;
+}
+
+#heuristics {
+    height: $heuristic-label-width;
+}
+
+.top-left-box {
+    width: $device-label-width;
+    height: $heuristic-label-width;
+}
