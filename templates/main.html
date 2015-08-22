@@ -10,16 +10,13 @@
                             <md-divider class="table-line"></md-divider>
                         </md-list-item>
                         <md-list-item ng-repeat="h in heuristics">
-                            <p flex="20">{{h.name}}</p>
-                            <p flex>{{h.description}}</p>
+                            <p flex="20" contenteditable="true" ng-model="h.description">{{h.name}}</p>
+                            <textarea flex contenteditable="true" ng-model="h.description" ng-blur="save()">{{h.description}}</textarea>
                         </md-list-item>
-                    </md-list>                    
+                    </md-list>
                 </md-content>
-                <md-toolbar>
-                    <md-toolbar-tools>
-                        <md-button class="md-raised" href="#/addheuristic">Add Heuristic</md-button>
-                    </md-toolbar-tools>
-                </md-toolbar>
+                <md-button class="md-raised md-fab right md-primary" href="#/addheuristic">+</md-button>
+
             </md-tab>
             <md-tab label="Devices">
                 <md-content class="md-padding">
@@ -31,7 +28,7 @@
                             <p>Software version</p>
                             <md-divider class="table-line"></md-divider>
                         </md-list-item>
-                        
+
                         <md-list-item ng-repeat="d in devices track by $index">
                             <p>{{d.name}}</p>
                             <p>{{d.manufacturer}}</p>
@@ -40,20 +37,16 @@
                         </md-list-item>
                     </md-list>
                 </md-content>
-                <md-toolbar>
-                    <md-toolbar-tools>
-                        <md-button class="md-raised" href="#/adddevice">Add Device</md-button>
-                    </md-toolbar-tools>
-                </md-toolbar>
+                <md-button class="md-raised md-fab md-primary" href="#/adddevice">+</md-button>
             </md-tab>
-            
+
             <md-tab label="Evaluation Matrix">
                 <md-content class="md-padding">
                     <div>
-                        <div layout="row">
+                        <div layout="row" ng-if="devices && devices.length">
                             <div flex="20" layout="column">
                                 <div class="top-left-box">
-                                
+
                                 </div>
                                 <div id="devices">
                                     <div ng-repeat="d in devices" class="device">
@@ -73,23 +66,24 @@
                                 <div id="matrix" layout="row" style="width:{{40 * heuristics.length}}px;height: {{40 * devices.length}}px">
                                     <div ng-repeat="(hindex, heval) in evalData" layout="column">
                                         <div ng-repeat="(dindex, deval) in heval" class="{{deval.frequency}}_{{deval.impact}} cell" ng-click="selectCell(hindex, dindex)">
-                                        
+
                                         </div>
                                     </div>
 
                                 </div>
-                            </div>  
+                            </div>
+                            <md-button class="md-raised md-fab md-primary" href="#/start"><i class="material-icons">mode_edit</i></md-button>
+                        </div>
+
+                        <div ng-if="!(devices && devices.length)">
+                            <p>You should first add a few devices before attempting to modify or start the evaluation</p>
+                            <md-button class="md-raised md-fab md-primary" href="#/adddevice">+</md-button>
                         </div>
                     </div>
-                    
+
                 </md-content>
-                <md-toolbar>
-                    <md-toolbar-tools>
-                        <md-button class="md-raised" href="#/start">Modify Evaluation</md-button>
-                    </md-toolbar-tools>
-                </md-toolbar>
             </md-tab>
-            
+
         </md-tabs>
     </md-content>
 </div>

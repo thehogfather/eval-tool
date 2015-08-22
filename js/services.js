@@ -10,7 +10,7 @@ function get(key) {
     try{
         return JSON.parse(str);
     } catch (err) {
-        return null;   
+        return null;
     }
 }
 
@@ -27,13 +27,16 @@ app.service("Heuristics", ["$http", function ($http) {
             console.log(err);
         });
     }
-    
+
     return {
         getHeuristics: function () {
             return heuristics;
         },
         addHeuristic: function (h) {
             heuristics.push(h);
+            this.save();
+        },
+        save: function () {
             set("heuristics", heuristics);
         }
     };
@@ -42,11 +45,11 @@ app.service("Heuristics", ["$http", function ($http) {
 app.service("EvaluationData", function () {
     "use strict";
     var data = get("evaluationdata") || {};
-    
+
     return {
         getData: function () {
             return data;
-        }, 
+        },
         save: function () {
             set("evaluationdata", data);
         }
@@ -56,14 +59,17 @@ app.service("EvaluationData", function () {
 app.service("Devices", function () {
     "use strict";
     var devices = get("devices") || [];
-    
+
     return {
         addDevice: function (d) {
             devices.push(d);
-            set("devices", devices);
+            this.save();
         },
         getDevices: function () {
-            return devices;   
+            return devices;
+        },
+        save: function () {
+            set("devices", devices);
         }
     };
 });
@@ -73,7 +79,7 @@ app.service("SelectedTab", function () {
     var selectedTab = get("selectedTab") || 0;
     return {
         getSelectedTab: function () {
-            return selectedTab;   
+            return selectedTab;
         },
         setSelectedTab: function (t) {
             selectedTab = t;
@@ -89,7 +95,7 @@ app.service("SelectedCell", function () {
             return selectedCell;
         },
         setSelectedCell: function (s) {
-            selectedCell = s;   
+            selectedCell = s;
         }
     };
 });
