@@ -12,11 +12,13 @@ $medium-medium: #ffd420;
 $low-high: #ffd420;
 
 body * {
-    box-sizing: border-box;   
+    box-sizing: border-box;
 }
 
-.table-line {
-    border-width: 5px;   
+md-list {
+    .md-button {
+        margin-top: -25px;
+    }
 }
 .device {
     height: $cell-size;

@@ -26,30 +26,21 @@
         $scope.save = function () {
             Heuristics.save();
         };
-    }]);
 
-    app.controller("AddHeuristicCtrl", ["$scope", "Heuristics", "$location", function ($scope, Heuristics, $location) {
-        $scope.heuristic = {};
-        $scope.save = function () {
-            Heuristics.addHeuristic($scope.heuristic);
-            $location.path("#/main");
+        $scope.addNewHeuristic = function (h) {
+            Heuristics.addHeuristic(h);
         };
 
-        $scope.cancel = function () {
-            $location.path("#/main");
-        };
-    }]);
-
-    app.controller("AddDeviceCtrl", ["$scope", "Devices", "$location", function ($scope, Devices, $location) {
-        $scope.device = {};
-
-        $scope.save = function () {
-            Devices.addDevice($scope.device);
-            $location.path("#/main");
+        $scope.removeHeuristic = function (h) {
+            Heuristics.remove(h);
         };
 
-        $scope.cancel = function () {
-            $location.path("#/main");
+        $scope.addNewDevice = function (d) {
+            Devices.addDevice(d);
+        };
+
+        $scope.removeDevice = function (d) {
+            Devices.remove(d);
         };
     }]);
 
@@ -123,14 +114,6 @@
         $routeProvider.when("/main", {
             templateUrl: "templates/main.html",
             controller: "MainCtrl"
-        })
-        .when("/addheuristic", {
-            templateUrl: "templates/add-heuristic.html",
-            controller: "AddHeuristicCtrl"
-        })
-        .when("/adddevice", {
-            templateUrl: "templates/add-device.html",
-            controller: "AddDeviceCtrl"
         })
         .when("/start", {
             templateUrl: "templates/start-eval.html",

@@ -38,6 +38,13 @@ app.service("Heuristics", ["$http", function ($http) {
         },
         save: function () {
             set("heuristics", heuristics);
+        },
+        remove: function (h) {
+            var i = heuristics.indexOf(h);
+            if (i > -1) {
+                heuristics.splice(i, 1);
+                this.save();
+            }
         }
     };
 }]);
@@ -70,6 +77,13 @@ app.service("Devices", function () {
         },
         save: function () {
             set("devices", devices);
+        },
+        remove: function (d) {
+            var i = devices.indexOf(d);
+            if (i > -1) {
+                devices.splice(i, 1);
+                this.save();
+            }
         }
     };
 });

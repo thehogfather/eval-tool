@@ -1,8 +1,8 @@
 body * {
   box-sizing: border-box; }
 
-.table-line {
-  border-width: 5px; }
+md-list .md-button {
+  margin-top: -25px; }
 
 .device {
   height: 40px;
