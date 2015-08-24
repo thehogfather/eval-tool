@@ -19,7 +19,12 @@ md-list {
     .md-button {
         margin-top: -25px;
     }
+    
+    md-checkbox {
+        margin-top: -10px;   
+    }
 }
+
 .device {
     height: $cell-size;
     width: $device-label-width;

@@ -3,6 +3,8 @@ body * {
 
 md-list .md-button {
   margin-top: -25px; }
+md-list md-checkbox {
+  margin-top: -10px; }
 
 .device {
   height: 40px;
