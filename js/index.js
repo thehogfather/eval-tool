@@ -31,16 +31,31 @@
             Heuristics.addHeuristic(h);
         };
 
-        $scope.removeHeuristic = function (h) {
-            Heuristics.remove(h);
+        $scope.removeHeuristic = function () {
+            var selected = Heuristics.getHeuristics().filter(function (h) {
+                return h.selected;
+            });
+            
+            selected.forEach(function (h) {
+                Heuristics.remove(h);
+            });
         };
 
         $scope.addNewDevice = function (d) {
             Devices.addDevice(d);
         };
 
-        $scope.removeDevice = function (d) {
-            Devices.remove(d);
+        $scope.removeDevice = function () {
+            var selected = Devices.getDevices().filter(function (d) {
+                return d.selected;
+            });
+            selected.forEach(function (d) {
+                Devices.remove(d);
+            });
+        };
+        
+        $scope.returnFalse = function () {
+            return false;
         };
     }]);
 

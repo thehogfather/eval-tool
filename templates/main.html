@@ -4,10 +4,12 @@
             <md-tab label="Heuristics">
                 <md-content class="md-padding">
                     <md-list>
-                        <md-list-item ng-repeat="h in heuristics" ng-mouseover="h.showDelete = true" ng-mouseleave="h.showDelete = false">
-                            <md-checkbox ng-model="h.selected">
+                        <md-list-item ng-repeat="h in heuristics" ng-click="returnFalse()">
+                            <md-input-container>
+                                <md-checkbox ng-model="h.selected">
                             
-                            </md-checkbox>
+                                </md-checkbox>
+                            </md-input-container>
                             <md-input-container flex="20" md-no-float>
                                 <input  ng-model="h.name" ng-blur="save()" placeholder="Enter heuristic"/>
                             </md-input-container>
@@ -17,17 +19,23 @@
                         </md-list-item>
                     </md-list>
                 </md-content>
-                <md-button class="md-raised md-primary" ng-click="addNewHeuristic({})">Add Heuristic</md-button>
-                <md-button class="md-warn md-raised" ng-click="removeHeuristic(h)">Remove Heuristic</md-button>
-
+                <div layout="row">
+                    <md-button class="md-raised md-primary" ng-click="addNewHeuristic({})">Add Heuristic</md-button>
+                    <span flex></span>
+                    <md-button class="md-warn md-raised" ng-click="removeHeuristic(h)">Remove Selected Heuristic</md-button>
+                </div>
+                
             </md-tab>
             <md-tab label="Devices">
                 <md-content class="md-padding">
                     <md-list>
-                        <md-list-item ng-repeat="d in devices track by $index" ng-mouseover="d.showDelete = true" ng-mouseleave="d.showDelete = false">
-                            <md-checkbox ng-model="d.selected">
+                        <md-list-item ng-repeat="d in devices track by $index" ng-click="returnFalse()">
+                            <md-input-container>
+                                <md-checkbox ng-model="d.selected">
                             
-                            </md-checkbox>
+                                </md-checkbox>
+                            </md-input-container>
+                            
                             <md-input-container flex md-no-float>
                                 <input ng-model="d.name" placeholder="Enter device name"/>
                             </md-input-container>
@@ -43,8 +51,12 @@
                         </md-list-item>
                     </md-list>
                 </md-content>
-                <md-button class="md-raised md-primary" ng-click="addNewDevice({})"> Add device</md-button>
-                <md-button class="md-raised md-warn" ng-click="removeDevice()">Remove Selected</md-button>
+                <div layout="row">
+                    <md-button class="md-raised md-primary" ng-click="addNewDevice({})"> Add device</md-button>
+                    <span flex></span>
+                    <md-button class="md-raised md-warn" ng-click="removeDevice()">Remove Selected Device</md-button>
+                </div>
+                
             </md-tab>
 
             <md-tab label="Evaluation Matrix">
@@ -79,11 +91,11 @@
 
                                 </div>
                             </div>
-                            
+                            <div>
+                                <md-button class="md-raised md-fab md-primary" href="#/start">edit</md-button>
+                            </div>
                         </div>
-                        <div>
-                            <md-button class="md-raised md-fab md-primary" href="#/start">edit</md-button>
-                        </div>
+                        
                         <div ng-if="!(devices && devices.length)">
                             <p>Please <a href="#/adddevice">add at least one device </a> before attempting to modify or start your evaluation.</p>
                             <md-button class="md-raised md-fab md-primary" href="#/adddevice">+</md-button>
